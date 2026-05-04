@@ -15,6 +15,13 @@ getPrice() {
 ')
 
     echo $currencyPrice
+
+    if [ -f "currencyHistory.txt" ]; then
+        echo $currencyPrice > "currencyHistory.txt"
+    else
+        touch "currencyHistory.txt"
+        echo $currencyPrice > "currencyHistory.txt"
+    fi
 }
 
 echo "==============Currency=============="
