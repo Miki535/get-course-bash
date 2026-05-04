@@ -1,4 +1,5 @@
 getPrice() {
+    dateAndTime=$(date)
     local codeA=$1
     local codeB=$2
     local currencyName=$3
@@ -14,14 +15,16 @@ getPrice() {
     | "\($currencyName): купівля \(.rateBuy) | продаж \(.rateSell)"
 ')
 
-    echo $currencyPrice
+    echo "$currencyPrice"
 
     if [ -f "currencyHistory.txt" ]; then
-        echo $currencyPrice > "currencyHistory.txt"
+        echo "History updated"
     else
         touch "currencyHistory.txt"
-        echo $currencyPrice > "currencyHistory.txt"
     fi
+    
+    echo $dateAndTime >> "currencyHistory.txt"
+    echo "$currencyPrice" >> "currencyHistory.txt"
 }
 
 echo "==============Currency=============="
